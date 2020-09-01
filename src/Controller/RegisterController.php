@@ -36,7 +36,6 @@ class RegisterController extends AbstractController
             // hash du mot de passe et création de jeton
             $user
             ->setPassword($passwordEncoder->encodePassword($user,$password))
-            ->renewToken()
             ;
 
 
@@ -45,7 +44,7 @@ class RegisterController extends AbstractController
             $this->manager->flush();
            // Envoi de l'email de confirmation
 
-            $this->addFlash('success', 'Vous avez bien été inscrit ! Un email de confirmation vous a été envoyée.');
+            $this->addFlash('success', 'Vous avez bien été inscrit !');
             return $this->redirectToRoute('home');
         }
 

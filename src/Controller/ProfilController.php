@@ -17,4 +17,16 @@ class ProfilController extends AbstractController
             'path' => 'src/Controller/ProfilController.php',
         ]);
     }
+     /**
+     * @Route("/event", name="event_made")
+     */
+
+   
+
+
+
+      /**
+     * @Route("/events", name="event_participate")
+     */
+    
 }
