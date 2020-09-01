@@ -37,13 +37,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->passwordEncoder = $passwordEncoder;
-
-        
     }
 
     public function supports(Request $request)
     {
-        dd(self::LOGIN_ROUTE, $request->attributes->get('_route'), $request->isMethod('POST'));
         return self::LOGIN_ROUTE === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
@@ -76,7 +73,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Email Introuvable !.');
         }
-        
+
         return $user;
     }
 
@@ -107,7 +104,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         return new RedirectResponse($this->urlGenerator->generate('home'));
-    }  
+    }
 
     protected function getLoginUrl()
     {
