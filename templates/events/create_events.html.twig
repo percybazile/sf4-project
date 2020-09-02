@@ -1,0 +1,37 @@
+{% extends "_templates.html.twig" %}
+
+{% block title %}
+    Profil de {{ app.user.pseudo }}
+{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <h1 class="title">Créer un évenement</h1>
+
+        <div class="columns">
+            <div class="column">
+                <h3 class="subtitle">Evenements</h3>
+
+                {{ form_start(events_form) }}
+
+                {{ form_row(events_form.nom, {
+                    label: 'Nom:'}) }}
+
+                {{ form_row(events_form.description, {
+                    label: 'Description:'}) }}
+
+                {{ form_row(events_form.lieu, {
+                    label: 'Lieu:'}) }}
+
+                {{ form_row(events_form.date, {
+                    label: 'Date:'}) }}
+
+                <button type="submit" class="button is-info is-fullwidth">
+                    Create
+                </button>
+
+                {{ form_end(events_form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
