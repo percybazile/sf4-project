@@ -1,0 +1,40 @@
+{% extends "_templates.html.twig" %}
+
+{% block title %}
+    Created Events
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="section">
+        <h1 class="title"> Created Events : {{ created_events|length }} </h1>
+
+        <div class="columns is-multiline">
+            {% for events in created_events %}
+            <div class="column is-one-third">
+                <div class="box">
+                    <article class="media">
+                        <div class="media-left">
+                            <figure class="image is-128x128">
+                                <img src="https://loremflickr.com/256/256/" alt="Image">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <div class="content">
+                                <p>
+                                    <a href="{{ path('created_events')}}" class="has-text-primary">
+                                        <strong>{{ events.nom }}</strong>
+                                    </a>
+                                    <br>
+                                    {{ events.description|slice(0, 25) }}
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

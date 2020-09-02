@@ -74,7 +74,7 @@ class ProfilController extends AbstractController
     public function createdPage(EventsRepository $repository)
     {
         return $this->render('events/created_events.html.twig', [
-            'artist_list' => $repository->findAll(),
+            'created_events' => $repository->findAll(),
         ]);
     }
 
