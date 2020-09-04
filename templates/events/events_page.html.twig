@@ -1,0 +1,84 @@
+{% extends "_templates.html.twig" %}
+
+{% block title %}
+    Events: {{ events.nom }}
+{% endblock %}
+
+{% block content %}
+    <section class="section">
+
+        {% include 'includes/flash.html.twig' %}
+        
+        <div class="columns">
+            <div class="column is-two-fifth">
+                <figure class="image is-1by1">
+                    <img src="https://loremflickr.com/1024/1024/album,music/all?lock={{ events.id }}">
+                </figure>
+            </div>
+
+            <div class="column">
+                <h2 class="subtitle">
+                    Events:
+                    <a href="{{ path('created_events', {id: events.id}) }}">
+                        {{ events.nom }}
+                    </a>
+                </h2>
+
+                <p class="content">
+                    {{ events.description }}
+                </p>
+
+                <hr>
+
+                {% if modifdelete_form is not null %}
+                    <hr>
+                    {{ form_start(modifdelete_form) }}
+                    {{ form_row(modifdelete_form.nom, {
+                        label: 'Nom:'}) }}
+    
+                    {{ form_row(modifdelete_form.description, {
+                        label: 'Description:'}) }}
+    
+                    {{ form_row(modifdelete_form.lieu, {
+                        label: 'Lieu:'}) }}
+    
+                    {{ form_row(modifdelete_form.date, {
+                        label: 'Date:'}) }}
+    
+
+                    <button type="submit" class="button is-primary is-fullwidth">
+                        Modifier
+                    </button>
+
+                    {{ form_end(modifdelete_form) }}
+                {% else %}
+                    <div class="section">
+                        <article class="message is-info">
+                            <div class="message-body">
+                                Connectez-vous pour pouvoir modifier cet event!
+                            </div>
+                            <div class="buttons is-centered">
+                                <a href="{{ path('app_login') }}" class="button is-info">
+                                    Connexion
+                                </a>
+                                <a href="{{ path('app_register') }}" class="button is-info">
+                                    Inscription
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+                    {% if is_granted("MODIF_DELETE") %}
+                        <div class="media-right">
+                            <a class="tag is-danger" href="{{ path('modif_delete', {id: modifdelete.id}) }}">
+                                Supprimer
+                                <span class="delete"></span>
+                            </a>
+                        </div>
+                    {% endif %}
+                </article>
+            </div>
+    </section>
+{% endblock %}
